@@ -1,10 +1,12 @@
 /*
  * Create a list that holds all of your cards
  */
-var deck = document.querySelector('.deck');
-var cards = [...deck.getElementsByClassName('card')];
-var openCards = [];
-var movesCount = document.querySelector('.moves');
+let deck = document.querySelector('.deck');
+let cards = [...deck.getElementsByClassName('card')];
+let movesCount = document.querySelector('.moves');
+let restart = document.querySelector('.restart');
+restart.addEventListener('click', restartGame);
+let openCards = [];
 let moves = 0;
 let matches = 0;
 
@@ -23,6 +25,7 @@ let matches = 0;
 
     // add shuffled cards to deck
     cards.forEach(function(card) {
+        card.classList.remove('open', 'show', 'match');
         deck.appendChild(card);
         card.addEventListener('click', onClick);
     });
@@ -44,7 +47,6 @@ function shuffle(array) {
 
     return array;
 }
-
 
 /*
  * set up the event listener for a card. If a card is clicked:
@@ -89,6 +91,10 @@ function checkWin() {
     if (matches === 8) {
         alert("You have won.");
     }
+}
+
+function restartGame() {
+    displayCards();
 }
 
 function main() {
