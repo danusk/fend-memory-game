@@ -3,6 +3,8 @@
  */
 let deck = document.querySelector('.deck');
 let cards = [...deck.getElementsByClassName('card')];
+
+// declare & initialize global variables
 let movesCount = document.querySelector('.moves');
 let restart = document.querySelector('.restart');
 restart.addEventListener('click', restartGame);
@@ -61,12 +63,14 @@ function shuffle(array) {
 
 function checkMatch() {
     // check if current card matches last added open card
+    // if they match, add match class
     if (openCards[0].innerHTML === openCards[1].innerHTML) {
         matches++;
         openCards[0].classList.add('match');
         openCards[1].classList.add('match');
         openCards = [];
     } else {
+        // if they don't match, remove show and open classes
         setTimeout(function() {
             openCards[0].classList.remove('show', 'open');
             openCards[1].classList.remove('show', 'open');
@@ -88,12 +92,18 @@ function onClick() {
 }
 
 function checkWin() {
+    // TODO: Make this a modal instead of an alert and add
+    // star rating
     if (matches === 8) {
         alert("You have won.");
     }
 }
 
+// TODO: Add a timer
+// TODO: Add star rating thresholds
+
 function restartGame() {
+    // TODO: Restart timer & star rating
     displayCards();
 }
 
