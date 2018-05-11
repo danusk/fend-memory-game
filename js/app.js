@@ -4,6 +4,9 @@
 var deck = document.querySelector('.deck');
 var cards = [...deck.getElementsByClassName('card')];
 var openCards = [];
+var movesCount = document.querySelector('.moves');
+let moves = 0;
+let matches = 0;
 
 /*
  * Display the cards on the page
@@ -54,13 +57,10 @@ function shuffle(array) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
-function openCard(card) {
-
-}
-
-function checkMatch(card) {
+function checkMatch() {
     // check if current card matches last added open card
     if (openCards[0].innerHTML === openCards[1].innerHTML) {
+        matches++;
         openCards[0].classList.add('match');
         openCards[1].classList.add('match');
         openCards = [];
@@ -69,16 +69,25 @@ function checkMatch(card) {
             openCards[0].classList.remove('show', 'open');
             openCards[1].classList.remove('show', 'open');
             openCards = [];
-        }, 800);
+        }, 500);
     }
-
 }
 
 function onClick() {
     event.target.classList.add('show', 'open');
     openCards.push(event.target);
     if (openCards.length === 2) {
+        moves++;
+        movesCount.innerHTML = moves;
         checkMatch();
+    }
+
+    checkWin();
+}
+
+function checkWin() {
+    if (matches === 8) {
+        alert("You have won.");
     }
 }
 
