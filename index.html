@@ -6,6 +6,7 @@
     <meta name="description" content="">
     <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
+    <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
     <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
@@ -16,21 +17,24 @@
         </header>
 
         <section class="score-panel">
-        	<ul class="stars">
+        	<ul class="stars score">
         		<li><i class="fa fa-star"></i></li>
         		<li><i class="fa fa-star"></i></li>
         		<li><i class="fa fa-star"></i></li>
         	</ul>
 
-        	<span class="moves">0</span> Moves
+            <div class="move-counter score">
+        	   <span class="moves">0</span> Moves
+            </div>
 
-            <div class="timer">
+            <div class="timer score">
                 <span class="minutes">00</span>:<span class="seconds">00</span>
             </div>
 
-            <div class="restart">
+            <div class="restart score">
         		<i class="fa fa-repeat"></i>
         	</div>
+
         </section>
 
         <ul class="deck">

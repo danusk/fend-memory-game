@@ -86,7 +86,8 @@ h1 {
  */
 
 .score-panel {
-    text-align: left;
+    display: flex;
+    text-align: center;
     width: 345px;
     margin-bottom: 10px;
 }
@@ -107,3 +108,13 @@ h1 {
     float: right;
     cursor: pointer;
 }
+
+.score-panel .timer {
+    font-family: 'Orbitron', sans-serif;
+}
+
+.score {
+    width: 30%;
+}
+
+
