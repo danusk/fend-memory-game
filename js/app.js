@@ -4,13 +4,20 @@
 let deck = document.querySelector('.deck');
 let cards = [...deck.getElementsByClassName('card')];
 
-// declare & initialize global variables
-let movesCount = document.querySelector('.moves');
+// declare & initialize variables
 let restart = document.querySelector('.restart');
 restart.addEventListener('click', restartGame);
+
+let minutesDisplay = document.querySelector(".minutes");
+let secondsDisplay = document.querySelector(".seconds");
+let seconds = 0;
+let minutes = 0;
+
+let movesCount = document.querySelector('.moves');
 let openCards = [];
 let moves = 0;
 let matches = 0;
+let time = 0;
 
 /*
  * Display the cards on the page
@@ -31,8 +38,6 @@ let matches = 0;
         deck.appendChild(card);
         card.addEventListener('click', onClick);
     });
-
-    return;
  }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -46,7 +51,6 @@ function shuffle(array) {
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
     }
-
     return array;
 }
 
@@ -80,6 +84,8 @@ function checkMatch() {
 }
 
 function onClick() {
+    // on click, open/show card
+    // check match if there are 2 cards in openCards
     event.target.classList.add('show', 'open');
     openCards.push(event.target);
     if (openCards.length === 2) {
@@ -87,7 +93,6 @@ function onClick() {
         movesCount.innerHTML = moves;
         checkMatch();
     }
-
     checkWin();
 }
 
@@ -99,16 +104,37 @@ function checkWin() {
     }
 }
 
-// TODO: Add a timer
+function setTimer() {
+    seconds++;
+    if (seconds === 60) {
+        minutes++;
+        seconds = 0;
+    }
+
+    minutesDisplay.innerHTML = padTimer(minutes);
+    secondsDisplay.innerHTML = padTimer(seconds);
+}
+
+function padTimer(num) {
+    num += "";
+    if (num.length < 2) {
+        num = "0" + num;
+    }
+
+    return num;
+}
+
+function startTimer() {
+    clearInterval(time);
+    time = setInterval(setTimer, 1000);
+}
+
 // TODO: Add star rating thresholds
 
 function restartGame() {
-    // TODO: Restart timer & star rating
+    // TODO: Restart star rating
     displayCards();
+    startTimer();
 }
 
-function main() {
-    displayCards();
-}
-
-main();
+restartGame();
