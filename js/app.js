@@ -5,15 +5,17 @@ let deck = document.querySelector('.deck');
 let cards = [...deck.getElementsByClassName('card')];
 
 // declare & initialize variables
-let restart = document.querySelector('.restart');
+const restart = document.querySelector('.restart');
 restart.addEventListener('click', restartGame);
 
-let minutesDisplay = document.querySelector(".minutes");
-let secondsDisplay = document.querySelector(".seconds");
+const minutesDisplay = document.querySelector(".minutes");
+const secondsDisplay = document.querySelector(".seconds");
+
 let seconds = 0;
 let minutes = 0;
 
-let movesCount = document.querySelector('.moves');
+const stars = document.querySelector(".stars");
+
 let openCards = [];
 let moves = 0;
 let matches = 0;
@@ -79,28 +81,47 @@ function checkMatch() {
             openCards[0].classList.remove('show', 'open');
             openCards[1].classList.remove('show', 'open');
             openCards = [];
-        }, 500);
+        }, 800);
     }
 }
 
 function onClick() {
     // on click, open/show card
     // check match if there are 2 cards in openCards
+    if (moves === 0) {
+        startTimer();
+    }
+
     event.target.classList.add('show', 'open');
     openCards.push(event.target);
     if (openCards.length === 2) {
+        const movesCount = document.querySelector('.moves');
         moves++;
         movesCount.innerHTML = moves;
         checkMatch();
     }
+
     checkWin();
+
+    starRating();
 }
 
 function checkWin() {
-    // TODO: Make this a modal instead of an alert and add
-    // star rating
     if (matches === 8) {
-        alert("You have won.");
+        const modal = document.querySelector(".modal");
+        const finalTime = document.querySelector(".final-time");
+        const finalScore = document.querySelector(".final-score");
+        const close = document.querySelector(".close");
+        const timer = document.querySelector(".timer");
+
+        finalTime.innerHTML = `${minutesDisplay.innerHTML}:${secondsDisplay.innerHTML}`;
+        timer.innerHTML = finalTime.innerHTML;
+        finalScore.appendChild(stars);
+        modal.style.display = "block";
+
+        close.addEventListener('click', function() {
+            modal.style.display = "none";
+        });
     }
 }
 
@@ -114,6 +135,7 @@ function setTimer() {
     minutesDisplay.innerHTML = padTimer(minutes);
     secondsDisplay.innerHTML = padTimer(seconds);
 }
+
 
 function padTimer(num) {
     num += "";
@@ -129,12 +151,18 @@ function startTimer() {
     time = setInterval(setTimer, 1000);
 }
 
-// TODO: Add star rating thresholds
+function starRating() {
+    if (moves === 24) {
+        stars.removeChild(stars.childNodes[0]);
+    } 
+    if (moves === 32) {
+        stars.removeChild(stars.childNodes[0]);
+    } 
+}
 
 function restartGame() {
-    // TODO: Restart star rating
     displayCards();
-    startTimer();
 }
 
 restartGame();
+

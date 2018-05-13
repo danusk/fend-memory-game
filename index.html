@@ -10,6 +10,18 @@
     <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
+    <div class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fa fa-times close"></i>
+            </div>
+            <h1>You win!</h1>
+            <div class="final">Your Final Score:
+                <ul class="final-score"></ul>
+                <span class="final-time"></span>
+            </div>
+        </div>
+    </div>
 
     <div class="container">
         <header>
@@ -32,7 +44,7 @@
             </div>
 
             <div class="restart score">
-        		<i class="fa fa-repeat"></i>
+        		<i class="fa fa-repeat" onClick="window.location.reload()"></i>
         	</div>
 
         </section>
