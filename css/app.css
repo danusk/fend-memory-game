@@ -121,7 +121,7 @@ h1 {
 }
 
 .modal {
-    display: block;
+    display: none;
     position: fixed;
     z-index: 1;
     width: 100%;
@@ -132,7 +132,7 @@ h1 {
 .modal-content {
     background-color: white;
     width: 500px;
-    height: 15%;
+    height: 40%;
     margin: 300px auto;
     text-align: center;
     animation-name: modal-appear;
@@ -157,7 +157,7 @@ h1 {
 
 .modal-header {
     margin: 0;
-    height: 15%;
+    height: 30px;
     background-color: #B276E0;
 }
 
