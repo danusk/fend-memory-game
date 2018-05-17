@@ -89,8 +89,12 @@ function onClick() {
         startTimer();
     }
 
-    event.target.classList.add("show", "open");
-    openCards.push(event.target);
+    // checks for double clicks
+    if (!(event.target.classList.contains("open"))) {
+        event.target.classList.add("show", "open");
+        openCards.push(event.target);
+    }
+
     if (openCards.length === 2) {
         const movesCount = document.querySelector(".moves");
         moves++;
