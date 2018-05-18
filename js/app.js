@@ -35,9 +35,11 @@ let time = 0;
     cards.forEach(function(card) {
         card.classList.remove("open", "show", "match");
         deck.appendChild(card);
-        card.addEventListener("click", onClick);
+        card.addEventListener("click", function(event) {
+            onClick(event);
     });
- }
+ });
+}
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -82,15 +84,21 @@ function checkMatch() {
     }
 }
 
-function onClick() {
+function onClick(event) {
     // on click, open/show card
     // check match if there are 2 cards in openCards
+
     if (moves === 0) {
         startTimer();
     }
 
+
     // checks for double clicks
     if (!(event.target.classList.contains("open"))) {
+        // fix for clicking on icon
+        if (event.target.tagName === 'I') {
+            return;
+        }
         event.target.classList.add("show", "open");
         openCards.push(event.target);
     }
