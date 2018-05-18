@@ -80,7 +80,7 @@ function checkMatch() {
             openCards[0].classList.remove("show", "open");
             openCards[1].classList.remove("show", "open");
             openCards = [];
-        }, 800);
+        }, 600);
     }
 }
 
