@@ -52,6 +52,7 @@ function shuffle(array) {
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
     }
+
     return array;
 }
 
@@ -75,7 +76,7 @@ function checkMatch() {
         openCards[1].classList.add("match");
         openCards = [];
     } else {
-        // if they don"t match, remove show and open classes
+        // if they don't match, remove show and open classes
         setTimeout(function() {
             openCards[0].classList.remove("show", "open");
             openCards[1].classList.remove("show", "open");
@@ -91,7 +92,6 @@ function onClick(event) {
     if (moves === 0) {
         startTimer();
     }
-
 
     // checks for double clicks
     if (!(event.target.classList.contains("open"))) {

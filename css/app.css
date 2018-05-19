@@ -138,6 +138,10 @@ h1 {
 }
 
 
+/*
+ * Styles for the Score Panel
+ */
+
 .modal {
     display: none;
     position: fixed;
@@ -151,7 +155,7 @@ h1 {
 .modal-content {
     background-color: white;
     width: 500px;
-    height: 40%;
+    height: 30%;
     margin: 300px auto;
     text-align: center;
     animation-name: modal-appear;
