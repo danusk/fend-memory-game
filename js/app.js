@@ -145,6 +145,7 @@ function setTimer() {
 }
 
 function padTimer(num) {
+    // add leading zeroes to minutes and seconds on timer
     num += "";
     if (num.length < 2) {
         num = "0" + num;
