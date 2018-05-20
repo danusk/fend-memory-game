@@ -18,6 +18,9 @@ let moves = 0;
 let matches = 0;
 let time = 0;
 
+// boolean to prevent clicking while setTimeout is active
+let enabled = true;
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -76,11 +79,13 @@ function checkMatch() {
         openCards[1].classList.add("match");
         openCards = [];
     } else {
+        enabled = false;
         // if they don't match, remove show and open classes
         setTimeout(function() {
             openCards[0].classList.remove("show", "open");
             openCards[1].classList.remove("show", "open");
             openCards = [];
+            enabled = true;
         }, 600);
     }
 }
@@ -88,6 +93,10 @@ function checkMatch() {
 function onClick(event) {
     // on click, open/show card
     // check match if there are 2 cards in openCards
+
+    if (!(enabled)) {
+        return;
+    }
 
     if (moves === 0) {
         startTimer();
