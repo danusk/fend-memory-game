@@ -79,7 +79,7 @@ function checkMatch() {
     } else {
         enabled = false;
         // if they don't match, remove show and open classes
-        setTimeout(function() {
+        setTimeout(() => {
             openCards[0].classList.remove("show", "open");
             openCards[1].classList.remove("show", "open");
             openCards = [];
@@ -134,7 +134,7 @@ function checkWin() {
         finalScore.appendChild(stars);
         modal.style.display = "block";
 
-        close.addEventListener("click", event => modal.style.display = "none");
+        close.addEventListener("click", () => modal.style.display = "none");
     }
 }
 
