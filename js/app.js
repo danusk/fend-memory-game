@@ -35,13 +35,11 @@ let enabled = true;
     deck.innerHTML = "";
 
     // add shuffled cards to deck
-    cards.forEach(function(card) {
+    cards.forEach(card => {
         card.classList.remove("open", "show", "match");
         deck.appendChild(card);
-        card.addEventListener("click", function(event) {
-            onClick(event);
+        card.addEventListener("click", event => onClick(event));
     });
- });
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -136,9 +134,7 @@ function checkWin() {
         finalScore.appendChild(stars);
         modal.style.display = "block";
 
-        close.addEventListener("click", function() {
-            modal.style.display = "none";
-        });
+        close.addEventListener("click", event => modal.style.display = "none");
     }
 }
 
@@ -168,12 +164,8 @@ function startTimer() {
 }
 
 function starRating() {
-    if (moves === 24) {
-        stars.removeChild(stars.childNodes[0]);
-    }
-    if (moves === 32) {
-        stars.removeChild(stars.childNodes[0]);
-    }
+    moves === 24 && stars.removeChild(stars.childNodes[0]);
+    moves === 32 && stars.removeChild(stars.childNodes[0]);
 }
 
 function restartGame() {
